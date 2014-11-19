@@ -1,0 +1,50 @@
+CommonC
+
+This project contains three header files,
+"debug_assert.h", "logger.h", and "data_structs.h",
+and will build an archive "commonc.a",
+to support common functions while developing C programs.
+
+Building and Installing:
+You need the contents of the "include" folder
+in your project's include directory, and link to the "commonc.a" archive.
+The former comes with the source code,
+and the latter will appear in the root of the source directory
+after you run "make".
+
+When compiled out of the box, the code is not optimized,
+and includes debug information and output.
+These settings can be changed in the "_CPPFLAGS" variable in "common.mk":
+To remove debug output, remove "-D DEBUG".
+To remove debug information from the binary, remove "-g" from "_CPPFLAGS".
+You can add optimization by adding optimization flags.
+
+In "common.mk" you can also change "CC" to any GCC-compatible compiler.
+
+
+debug_assert.h:
+"debug_assert" is a wrapper around "assert" to call it only if
+the "DEBUG" macro is defined, eg. with the "-D DEBUG" command line option.
+"debug_assert_imply" checks that an implication holds
+only if "DEBUG" is defined.
+
+
+logger.h:
+"printlg" prints messages to the stream specified by "LOG_FILE"
+with the following logging levels,
+sorted by decreasing priority:
+"FATAL_LEVEL", "ERROR_LEVEL", "WARNING_LEVEL", "INFO_LEVEL",
+"ASSERT_LEVEL",	"DEBUG_LEVEL".
+
+The message is printed only if the given level is at least "DISP_LEVEL",
+and when it is printed, the message starts with a tag representing its level.
+
+The macros "LOG_FILE" and "DISP_LEVEL" can be redefined
+before the line calling "printlg" in which the changes are to take effect.
+By default, "LOG_FILE" is "stderr",
+and "DISP_LEVEL" is "DEBUG_LEVEL" if "DEBUG" is defined,
+or "INFO_LEVEL" otherwise.
+
+
+data_structs.c/h:
+Currently, supports heap sort through the "heap_sort" function.
