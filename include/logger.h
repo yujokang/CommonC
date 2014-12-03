@@ -4,6 +4,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <debug_assert.h>
@@ -103,5 +104,29 @@ static inline void printlg(enum log_level level, char *fmt, ...)
 		va_end(args);
 	}
 }
+
+/* the number of hexadecimal digits per byte */
+#define HEX_DIGITS_PER_BYTE	2
+/*
+ * Calculates the maximum number of characters
+ * needed in a hexadecimal string buffer.
+ * size:	the number of raw bytes in memory to show
+ * returns	the number of hexadecimal digits, and the null character,
+ *		needed to represent the bytes
+ */
+inline static size_t hex_str_length(size_t size)
+{
+	return size * HEX_DIGITS_PER_BYTE + 1;
+}
+
+/*
+ * Convert raw binary data into a hexadecimal string
+ * as if it were in big-endian form,
+ * similar to the "%x" format argument, but byte-by-byte.
+ * out:		the output text buffer
+ * in:		the raw, binary input
+ * size:	the number of bytes to show
+ */
+void bytes_to_hex(char *out, const void *in, size_t size);
 
 #endif /* LOGGER_H */

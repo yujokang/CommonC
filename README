@@ -29,7 +29,7 @@ the "DEBUG" macro is defined, eg. with the "-D DEBUG" command line option.
 only if "DEBUG" is defined.
 
 
-logger.h:
+logger.c/h:
 "printlg" prints messages to the stream specified by "LOG_FILE"
 with the following logging levels,
 sorted by decreasing priority:
@@ -44,6 +44,9 @@ before the line calling "printlg" in which the changes are to take effect.
 By default, "LOG_FILE" is "stderr",
 and "DISP_LEVEL" is "DEBUG_LEVEL" if "DEBUG" is defined,
 or "INFO_LEVEL" otherwise.
+
+The C code includes a function for converting raw binary data
+into hexadecimal strings.
 
 
 data_structs.c/h:
