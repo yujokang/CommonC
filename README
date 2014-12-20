@@ -1,7 +1,8 @@
 CommonC
 
-This project contains three header files,
-"debug_assert.h", "logger.h", and "data_structs.h",
+This project contains six header files,
+"data_structs.h", "debug_assert.h", "get_random.h", "logger.h", "permutation.h",
+and "xmath.h",
 and will build an archive "commonc.a",
 to support common functions while developing C programs.
 
@@ -22,11 +23,20 @@ You can add optimization by adding optimization flags.
 In "common.mk" you can also change "CC" to any GCC-compatible compiler.
 
 
+data_structs.c/h:
+Currently, supports heap sort through the "heap_sort" function.
+
+
 debug_assert.h:
 "debug_assert" is a wrapper around "assert" to call it only if
 the "DEBUG" macro is defined, eg. with the "-D DEBUG" command line option.
 "debug_assert_imply" checks that an implication holds
 only if "DEBUG" is defined.
+
+
+get_random.c/h:
+"get_random" is a wrapper function to
+fetch a specified number of random bytes from the operating system.
 
 
 logger.c/h:
@@ -49,5 +59,10 @@ The C code includes a function for converting raw binary data
 into hexadecimal strings.
 
 
-data_structs.c/h:
-Currently, supports heap sort through the "heap_sort" function.
+permutation.c/h:
+"permute" generates an almost uniformly random permutation.
+
+
+xmath.c/h:
+Contains functions for calculating 128-bit products from 64-bit integers,
+and 64-bit remainders from a 128-bit divident and a 64-bit divisor.
