@@ -48,16 +48,30 @@ enum log_level {
 #endif
 
 /*
+ * Linux console code for setting the text color
+ * color_code:	string code for the color
+ */
+#define SET_COLOR(color_code)	"\x1B[" color_code "m"
+/* Linux console code for returning to the default text color */
+#define END_COLOR		SET_COLOR("0")
+
+/*
  * Human-readable representation of the logging levels,
  * which will appear in the log output.
  * Texts are indexed by severity level.
  */
-static const char *tags[N_LEVELS] = {[DEBUG_LEVEL] = "DEBUG",
-				     [ASSERT_LEVEL] = "ASSERT",
-				     [INFO_LEVEL] = "INFO",
-				     [WARNING_LEVEL] = "WARNING",
-				     [ERROR_LEVEL] = "ERROR",
-				     [FATAL_LEVEL] = "FATAL"};
+static const char *tags[N_LEVELS] = {[DEBUG_LEVEL] =
+					SET_COLOR("33") "DEBUG" END_COLOR,
+				     [ASSERT_LEVEL] =
+					SET_COLOR("36") "ASSERT" END_COLOR,
+				     [INFO_LEVEL] =
+					SET_COLOR("32") "INFO" END_COLOR,
+				     [WARNING_LEVEL] =
+					SET_COLOR("33;1") "WARNING" END_COLOR,
+				     [ERROR_LEVEL] =
+					SET_COLOR("31;1") "ERROR" END_COLOR,
+				     [FATAL_LEVEL] =
+					SET_COLOR("35;1") "FATAL" END_COLOR};
 /*
  * Map the warning level to the string tag
  * level:	the numerical log level that indexes the tag
