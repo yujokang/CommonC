@@ -1,8 +1,8 @@
 CommonC
 
-This project contains six header files,
-"data_structs.h", "debug_assert.h", "get_random.h", "logger.h", "permutation.h",
-and "xmath.h",
+This project contains header files,
+"data_structs.h", "debug_assert.h", "file_buffer.h", "get_random.h", "logger.h",
+"permutation.h", and "xmath.h",
 and will build an archive "commonc.a",
 to support common functions while developing C programs.
 
@@ -32,6 +32,12 @@ debug_assert.h:
 the "DEBUG" macro is defined, eg. with the "-D DEBUG" command line option.
 "debug_assert_imply" checks that an implication holds
 only if "DEBUG" is defined.
+
+
+file_buffer.c/h:
+"file_buffer_t" is a wrapper around the "FILE *" file stream type for reading,
+and can be accessed by functions similar to those used to read from "FILE *",
+but up to a page of file data can be buffered in memory.
 
 
 get_random.c/h:
