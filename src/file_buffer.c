@@ -200,9 +200,13 @@ static size_t read_new(void *ptr, size_t size, file_buffer_t *buffer)
 	 * to keep the start of the buffer a page before the real pointer.
 	 */
 	if (remainder_bytes > 0) {
-		size_t rest_to_read = reached_end ?
-				      remainder_bytes : (size_t) PAGE_SIZE;
+		size_t
+		dist_from_end = buffer->file_size - buffer->real_position;
+		size_t rest_to_read = dist_from_end < (size_t) PAGE_SIZE ?
+				      dist_from_end : (size_t) PAGE_SIZE;
 
+		printlg(DEBUG_LEVEL, "Want to read %u remaining bytes.\n",
+			(unsigned) rest_to_read);
 		if (fread(buffer->buffer, rest_to_read, 1,
 			  buffer->in_file) == 0) {
 			printlg(ERROR_LEVEL,

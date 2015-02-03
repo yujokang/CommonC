@@ -207,6 +207,17 @@ static struct file_buffer_tv small_read = {
 	.tester = small_read_tester
 };
 
+static int smaller_read_tester(file_buffer_t *buffer, unsigned char *file_map)
+{
+	return read_check(buffer, file_map, 1, 1);
+}
+
+/* Try to read just one byte from the small file. */
+static struct file_buffer_tv smaller_read = {
+	.file_name = SMALL_FILE,
+	.tester = smaller_read_tester
+};
+
 /*
  * Check that the virtual pointer of the file is in the correct location.
  * buffer:		the buffer whose virtual pointer to check
@@ -469,5 +480,7 @@ static struct file_buffer_tv error_read = {
 };
 
 struct file_buffer_tv *file_buffer_tvs[N_FILE_BUFFER_TVS] = {
-	&full_read, &segmented_read, &small_read, &jumping_read, &error_read
+	&full_read, &segmented_read,
+	&small_read, &smaller_read,
+	&jumping_read, &error_read
 };

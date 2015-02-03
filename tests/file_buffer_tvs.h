@@ -19,6 +19,6 @@ struct file_buffer_tv {
 	int (*tester)(file_buffer_t *buffer, unsigned char *file_map);
 };
 
-#define N_FILE_BUFFER_TVS 5
+#define N_FILE_BUFFER_TVS 6
 /* all the test vectors that will be run by "test_file_buffers" */
 extern struct file_buffer_tv *file_buffer_tvs[N_FILE_BUFFER_TVS];
