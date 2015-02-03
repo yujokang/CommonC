@@ -6,6 +6,7 @@
 
 #include <string.h>
 
+#ifdef DEBUG
 /*
  * For debugging, check that the array is actually a permutation.
  * permutation:	the candidate permutation to check
@@ -43,6 +44,7 @@ static int is_permutation(uint32_t *permutation, uint32_t size)
 
 	return passed;
 }
+#endif /* DEBUG */
 
 int permute(uint32_t *permute_output, uint32_t size)
 {

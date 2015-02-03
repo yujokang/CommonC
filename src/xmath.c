@@ -152,7 +152,9 @@ void xmultiply_slow(uint64_t *out_high, uint64_t *out_low,
 			carried = add_digit(out_vector,
 					    digit_result_vector.low,
 					    target_base, OUT_VECTOR_SIZE);
-			debug_assert(!carried);
+			if (!carried) {
+				debug_assert(!carried);
+			}
 			carried = add_digit(out_vector,
 					    digit_result_vector.high,
 					    target_base + 1, OUT_VECTOR_SIZE);
