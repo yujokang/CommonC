@@ -13,12 +13,12 @@ The former comes with the source code,
 and the latter will appear in the root of the source directory
 after you run "make".
 
-When compiled out of the box, the code is not optimized,
-and includes debug information and output.
+When compiled out of the box, the code is optimized,
+and does not include debug information and output.
 These settings can be changed in the "_CPPFLAGS" variable in "common.mk":
-To remove debug output, remove "-D DEBUG".
-To remove debug information from the binary, remove "-g" from "_CPPFLAGS".
-You can add optimization by adding optimization flags.
+To add debug output, add "-D DEBUG".
+To add debug information to the binary, add "-g".
+"-O3" is the optimization flag, which you can remove or change.
 
 In "common.mk" you can also change "CC" to any GCC-compatible compiler.
 
